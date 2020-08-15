@@ -38,7 +38,7 @@ type DeploymentSpec struct {
 	RevisionHistoryLimit    int64                  `json:"revisionHistoryLimit"`
 	Selector                map[string]interface{} `json:"selector"`
 	Strategy                DeploymentStrategy     `json:"strategy"`
-	Template                interface{}            `json:"template"`
+	Template                DeploymentTemplate     `json:"template"`
 }
 
 // DeploymentStatus holds status of a deployment
@@ -78,12 +78,12 @@ type DeploymentTemplateMetadata struct {
 
 // DeploymentTemplateSpec holds data about template spec
 type DeploymentTemplateSpec struct {
-	DNSPolicy                     string      `json:"dnsPolicy"`
-	RestartPolicy                 string      `json:"restartPolicy"`
-	SchedulerName                 string      `json:"schedulerName"`
-	SecurityContext               string      `json:"securityContext"`
-	ServiceAccount                string      `json:"serviceAccount"`
-	ServiceAccountName            string      `json:"serviceAccountName"`
-	TerminationGracePeriodSeconds int64       `json:"terminationGracePeriodSeconds"`
-	Containers                    []Container `json:"containers"`
+	DNSPolicy                     string                 `json:"dnsPolicy"`
+	RestartPolicy                 string                 `json:"restartPolicy"`
+	SchedulerName                 string                 `json:"schedulerName"`
+	SecurityContext               map[string]interface{} `json:"securityContext"`
+	ServiceAccount                string                 `json:"serviceAccount"`
+	ServiceAccountName            string                 `json:"serviceAccountName"`
+	TerminationGracePeriodSeconds int64                  `json:"terminationGracePeriodSeconds"`
+	Containers                    []Container            `json:"containers"`
 }

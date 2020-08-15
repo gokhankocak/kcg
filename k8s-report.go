@@ -353,9 +353,62 @@ func main() {
 	}
 	fmt.Printf("Loaded %d items from deployments.json\n", len(dps.Items))
 
-	for k := 0; k < len(dps.Items); k++ {
-		dp := &dps.Items[k]
-		fmt.Println(dp.Metadata.Name, dp.Metadata.Namespace, dp.Metadata.Generation)
+	if false {
+		for k := 0; k < len(dps.Items); k++ {
+			dp := &dps.Items[k]
+			fmt.Println(dp.Metadata.Name, dp.Metadata.Namespace, dp.Metadata.Generation)
+		}
+	}
+
+	var dmnss kcg.DaemonSets
+	content, err = ioutil.ReadFile(filepath.Join(filepath.Dir(progArgs.InputDir), "/", filepath.Base(progArgs.InputDir), "/", "daemonsets.json"))
+	if err == nil {
+		err = json.Unmarshal(content, &dmnss)
+		if err != nil {
+			fmt.Println("daemonsets.json", err.Error())
+		}
+	}
+	fmt.Printf("Loaded %d items from daemonsets.json\n", len(dmnss.Items))
+
+	if false {
+		for k := 0; k < len(dmnss.Items); k++ {
+			dmns := &dps.Items[k]
+			fmt.Println(dmns.Metadata.Name, dmns.Metadata.Namespace, dmns.Metadata.Generation)
+		}
+	}
+
+	var rpss kcg.ReplicaSets
+	content, err = ioutil.ReadFile(filepath.Join(filepath.Dir(progArgs.InputDir), "/", filepath.Base(progArgs.InputDir), "/", "replicasets.json"))
+	if err == nil {
+		err = json.Unmarshal(content, &rpss)
+		if err != nil {
+			fmt.Println("replicasets.json", err.Error())
+		}
+	}
+	fmt.Printf("Loaded %d items from replicasets.json\n", len(rpss.Items))
+
+	if false {
+		for k := 0; k < len(rpss.Items); k++ {
+			rps := &rpss.Items[k]
+			fmt.Println(rps.Metadata.Name, rps.Metadata.Namespace, rps.Metadata.Generation)
+		}
+	}
+
+	var sfss kcg.StatefulSets
+	content, err = ioutil.ReadFile(filepath.Join(filepath.Dir(progArgs.InputDir), "/", filepath.Base(progArgs.InputDir), "/", "statefulsets.json"))
+	if err == nil {
+		err = json.Unmarshal(content, &sfss)
+		if err != nil {
+			fmt.Println("statefulsets.json", err.Error())
+		}
+	}
+	fmt.Printf("Loaded %d items from statefulsets.json\n", len(sfss.Items))
+
+	if false {
+		for k := 0; k < len(sfss.Items); k++ {
+			sfs := &sfss.Items[k]
+			fmt.Println(sfs.Metadata.Name, sfs.Metadata.Namespace, sfs.Metadata.Generation)
+		}
 	}
 
 	// images
